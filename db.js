@@ -2,10 +2,11 @@
 
 // Step-1 : Require the 'mongoose' package.
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 // Step-2 : Define the MongoDB connection URL
-// const mongoURL = 'mongodb://127.0.0.1:27017/hotelsDB' // Replace 'myDatabse' with your database name. (Local Database)
-const mongoURL = 'mongodb+srv://mohitsoni:Jaipur111@cluster0.8tuwu.mongodb.net/' // (Remote Database)
+// const mongoURL = process.env.MONGO_LOCAL_URL // Replace 'myDatabse' with your database name. (Local Database)
+const mongoURL = process.env.MONGO_REMOTE_URL // (Remote Database)
 
 //Step-3 : Setup the MongoDB Connnection
 mongoose.connect(mongoURL)
