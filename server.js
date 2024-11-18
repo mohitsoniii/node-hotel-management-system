@@ -6,8 +6,14 @@ require('dotenv').config()
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // req.body
 
+// Middleware Function
+const logRequest = (req, res, next) => {
+    console.log(`[${new Date().toLocaleString()}] Request made to : ${req.originalUrl}`);
+    next(); // move on to next phase
+}
+app.use(logRequest); // this line will apply midd leware for all endpoints
 
-app.get('/', function(req, res) {
+app.get('/',function(req, res) {
     res.send("Welcome to my Hotel, How can i help you...?")
 })
 
