@@ -5,8 +5,8 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 
 // Step-2 : Define the MongoDB connection URL
-// const mongoURL = process.env.MONGO_LOCAL_URL // Replace 'myDatabse' with your database name. (Local Database)
-const mongoURL = process.env.MONGO_REMOTE_URL // (Remote Database)
+const mongoURL = process.env.MONGO_LOCAL_URL // Replace 'myDatabse' with your database name. (Local Database)
+// const mongoURL = process.env.MONGO_REMOTE_URL // (Remote Database)
 
 //Step-3 : Setup the MongoDB Connnection
 mongoose.connect(mongoURL)

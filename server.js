@@ -1,7 +1,8 @@
-const express = require('express')
+const express = require('express');
 const app = express();
 const db = require('./db');
-require('dotenv').config()
+require('dotenv').config();
+const passport = require('./auth')
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // req.body
@@ -13,6 +14,11 @@ const logRequest = (req, res, next) => {
 }
 app.use(logRequest); // this line will apply midd leware for all endpoints
 
+// Authentication Middleware
+app.use(passport.initialize());
+const localAuthMiddleware = passport.authenticate('local', {session : false}) 
+
+
 app.get('/',function(req, res) {
     res.send("Welcome to my Hotel, How can i help you...?")
 })
@@ -20,7 +26,7 @@ app.get('/',function(req, res) {
 
 // Person Routes
 const personRoutes = require('./routes/personRoutes');
-app.use('/person', personRoutes)
+app.use('/person', localAuthMiddleware,personRoutes)
 
 // Menu Item Routes
 const menuItemsRoutes = require('./routes/menuItemsRoutes')
