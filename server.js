@@ -9,7 +9,7 @@ app.use(bodyParser.json()); // req.body
 
 // Middleware Function
 const logRequest = (req, res, next) => {
-    console.log(`[${new Date().toLocaleString()}] Request made to : ${req.originalUrl}`);
+    console.log(`[ ${new Date().toLocaleString()} ] Request made to : ${req.originalUrl}`);
     next(); // move on to next phase
 }
 app.use(logRequest); // this line will apply midd leware for all endpoints
@@ -26,7 +26,7 @@ app.get('/',function(req, res) {
 
 // Person Routes
 const personRoutes = require('./routes/personRoutes');
-app.use('/person', localAuthMiddleware,personRoutes)
+app.use('/person', localAuthMiddleware, personRoutes)
 
 // Menu Item Routes
 const menuItemsRoutes = require('./routes/menuItemsRoutes')
